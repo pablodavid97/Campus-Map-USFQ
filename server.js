@@ -28,14 +28,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Starting server
 if(process.env.NODE_ENV === 'production') {
     app.listen(app.get('port'), () => {
-      console.log('Server on port', app.get('port'));
+        console.log("Running on production");
+        console.log('Server on port', app.get('port'));
     });
 } else {
     const reload = require('reload');
     
     reload(app).then((reloadReturned) => {
       app.listen(app.get('port'), () => {
-        console.log('Server on port', app.get('port'));
+          console.log("Running in development");
+          console.log('Server on port', app.get('port'));
       });
     }).catch((err) => {
       console.error("Reload could not start", err);
