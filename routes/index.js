@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     const key = process.env.GOOGLE_MAPS_KEY;
-    const env = process.env.NODE_ENV;
+    var env = process.env.NODE_ENV;
 
     if(env !== 'development'){
         env = undefined
