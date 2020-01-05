@@ -25,7 +25,20 @@ app.use(require('./routes/'));
 //Public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Starting the server
-app.listen(process.env.PORT || 4000, () => {
-    console.log('Server on port', app.get('port'));
-})
+//Starting server
+if(process.env.NODE_ENV === 'production') {
+    app.listen(app.get('port'), () => {
+      console.log('Server on port', app.get('port'));
+    });
+} else {
+    const reload = require('reload');
+    
+    reload(app).then((reloadReturned) => {
+      app.listen(app.get('port'), () => {
+        console.log('Server on port', app.get('port'));
+      });
+    }).catch((err) => {
+      console.error("Reload could not start", err);
+    });
+}
+  
