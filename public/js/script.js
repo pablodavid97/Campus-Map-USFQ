@@ -105,11 +105,11 @@ function initMap() {
   
   BuildingLbl.prototype.draw = function() {
     var div = this.div_;
-    console.log("lat", this.location_.lat() );
-    console.log("lng", this.location_.lng());
+    // console.log("lat", this.location_.lat() );
+    // console.log("lng", this.location_.lng());
 
     var pos = this.getProjection().fromLatLngToDivPixel(this.location_);
-    console.log('position', pos);
+    // console.log('position', pos);
     
     if(pos) {
       div.style.left = (pos.x-10) + 'px';

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     if(env !== 'development'){
         env = undefined
     }
-    console.log("env", env);
+    // console.log("env", env);
     
     res.render('index', {key: key, env: env});
 });
