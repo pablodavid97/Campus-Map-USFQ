@@ -1,0 +1,176 @@
+/* General queries */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #121212;
+    font-family: 'roboto';
+    font-size: 1rem;
+    overflow: auto;
+}
+
+/* Header */
+#mapNavbar{
+    background-color: #121212!important;
+    border-color: #090909!important;
+}
+
+#mapNavbar .dropdown-menu {
+    background-color: #121212!important;
+    height: 310px;
+    width: 220px;
+    padding: 15px;
+}
+
+#mapNavbar .dropdown-menu li {
+    color: #fff;
+    display: inline;
+}
+
+#mapNavbar .dropdown-menu input[type=checkbox] {
+    float: right;
+    margin-top: 5px;
+}
+
+#usfqLogoHeader {
+    height: 70px;
+    width: auto;
+}
+
+/* Map */
+#usfqMap {
+    height: 100%;
+    width: 100%;
+}
+
+.map {
+    min-height: 100px;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Footer */
+#mapFooter {
+    height: 185px;
+    width: 100%;
+    z-index: 60;
+    background-color: #121212;
+    color: #eeeeee;
+    position: absolute;
+    bottom: 0px;
+    padding: 40px 0;
+}
+
+body a:link, a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+#footerLogo img{
+    height: 70px;
+    width: auto;
+}
+
+#usfqDescription{
+    float: right;
+}
+
+.copyright{
+    font-size: 0.8em;
+    text-align: center;
+    margin-top: 2%;
+}
+
+/* Building Info Styles */
+.buildingInfo h1.buildingName {
+    font-size: 2em;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 320px) {
+    body {
+        font-size: 0.8em;
+    }
+    
+    #usfqLogoHeader {
+        height: 35px;
+        width: auto;
+    }
+
+    .dropdown-menu {
+        font-size: 0.8rem;
+    }
+
+    footer#mapFooter {
+        height: 140px;
+    }
+
+    #footerLogo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .footer_container p#usfqDescription {
+        font-size: 0.6em;
+    }
+
+    .footer_container {
+        margin-bottom: 8%;
+    }
+
+    .copyright {
+        font-size: 0.5em;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 479px){
+    body {
+        font-size: 0.8em;
+    }
+    
+    #usfqLogoHeader {
+        height: 40px;
+        width: auto;
+    }
+
+    .dropdown-menu {
+        font-size: 0.8rem;
+    }
+
+    footer#mapFooter {
+        height: 160px;
+    }
+
+    #footerLogo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .footer_container p#usfqDescription {
+        font-size: 0.7em;
+    }
+
+    .footer_container {
+        margin-bottom: 12%;
+    }
+
+    .copyright {
+        font-size: 0.6em;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-nav ul#mapOptions {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #mapNavbar .dropdown-menu {
+        height: 260px;
+    }
+}

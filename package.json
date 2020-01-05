@@ -1,0 +1,31 @@
+{
+  "name": "usfq-map",
+  "version": "1.0.0",
+  "description": "This is a campus map of USFQ, it will be used for helping local and internationals students move around.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Campus",
+    "Map",
+    "USFQ",
+    "Google",
+    "API"
+  ],
+  "author": "Pablo Llanes",
+  "license": "ISC",
+  "dependencies": {
+    "db": "^1.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "reload": "^3.0.3"
+  }
+}

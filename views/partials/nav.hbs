@@ -1,0 +1,190 @@
+<nav id="mapNavbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <img id="usfqLogoHeader" src="./img/logo_USFQ_header.png" alt="USFQ logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMapOptions">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMapOptions">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="mapFeaturesDropdown" role="button" data-toggle="dropdown">Map Features</a>
+                    <ul id="mapOptions" class="dropdown-menu">
+                        <div>
+                            <li>Satellite View</li>
+                            <input id="satelliteCheck" type="checkbox" name="Satellite" value="satellite">
+                        </div>
+                        <div>
+                            <li>USFQ Campus</li>
+                            <input id="usfqMapCheck" type="checkbox" name="Campus Map" value="map" checked="true">
+                        </div>
+                        <div>
+                            <li>Commercial Places</li>
+                            <input id="commercialPlaces" type="checkbox" name="Commercial Places" value="commercial">     
+                        </div>
+                        <div>
+                            <li>Restaurants</li>
+                            <input id="restaurants" type="checkbox" name="Restaurants" value="restaurants" checked='true'>   
+                        </div>
+                        <div>
+                            <li>Student Services</li>
+                            <input id="studentServices" type="checkbox" name="Student Services" value="student services" checked="true">
+                        </div>
+                        <div>
+                            <li>Health Services</li>
+                            <input id="healthServices" type="checkbox" name="Health Services" value="health" checked="true">
+                        </div>
+                        <div>
+                            <li>Handicap Services</li>
+                            <input id="handicapServices" type="checkbox" name="Handicap Services" value="handicap">
+                        </div>
+                        <div>
+                            <li>Emergency Exits</li>
+                            <input id="emergencyExits" type="checkbox" name="Emergency Exits" value="emergency">
+                        </div>
+                        <div>
+                            <li>Entrances</li>
+                            <input id="usfqEntrances" type="checkbox" name="Entrances" value="entrances" checked='true'>
+                        </div>
+                        <div>
+                            <li>Meeting Points</li>
+                            <input id="meetingPoints" type="checkbox" name="Meeting Points" value="meeting points">
+                        </div>
+                        <div>
+                            <li>Bus Stops</li>
+                            <input id="busStops" type="checkbox" name="Bus Stops" value="bus stops" checked="true">
+                        </div>
+                        {{!-- <div>
+                            <li>Parking Lots</li>
+                            <input id="parkingLots" type="checkbox" name="Parking Lots" value="parking" checked='true'>
+                        </div> --}}
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.usfq.edu.ec/contacto/PublishingImages/MAPA-USFQ-OUT-2019.jpg" class="nav-link" target="__blank">Printable Map</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.usfq.edu.ec/estudiantes/nuevos/Documents/movilidad/Rutas_Panchobus.pdf" class="nav-link" target="__blank">Bus Routes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script>
+    // Map Features
+    var satelliteCheck = document.getElementById('satelliteCheck');
+    var usfqMapCheck = document.getElementById('usfqMapCheck');
+    var commercialPlaces = document.getElementById('commercialPlaces');
+    var restaurants = document.getElementById('restaurants');
+    var studentServices = document.getElementById('studentServices');
+    var healthServices = document.getElementById('healthServices');
+    var handicapServices = document.getElementById('handicapServices');
+    var emergencyExits = document.getElementById('emergencyExits');
+    var entrances = document.getElementById('usfqEntrances');
+    var meetingPoints = document.getElementById('meetingPoints');
+    var busStops = document.getElementById('busStops');
+    var parkingLots = document.getElementById('parkingLots');
+
+    satelliteCheck.addEventListener('change', function(e) {
+        if(this.checked) {
+        console.log("object checked");
+        
+        mapOptions(satelliteCheck.value);
+        } else {
+        mapOptions('roadmap');
+        }
+    });
+
+    usfqMapCheck.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions(usfqMapCheck.value);
+        } else {
+            mapOptions('null');
+        }
+    });
+
+    commercialPlaces.addEventListener('change', function(e) {
+        if(this.checked){
+            mapOptions(commercialPlaces.value);
+        } else {
+            mapOptions('no commercial');
+        }
+    });
+
+    restaurants.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('restaurants');
+        } else {
+            mapOptions('no restaurants');
+        }
+    });
+
+    studentServices.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('student services');
+        } else {
+            mapOptions('no student services');
+        }
+    });
+
+    healthServices.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('health services');
+        } else {
+            mapOptions('no health services');
+        }
+    });
+
+    handicapServices.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('handicap');
+        } else {
+            mapOptions('no handicap');
+        }
+    });
+
+    emergencyExits.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('emergency');
+        } else {
+            mapOptions('no emergency exits');
+        }
+    });
+
+    entrances.addEventListener('change', function(e) {
+        if(this.checked){
+            mapOptions(entrances.value);
+        } else {
+            mapOptions('no entrances');
+        }
+    });
+
+    meetingPoints.addEventListener('change', function(e) {
+        if(this.checked){
+            console.log("meetings checked")
+            mapOptions(meetingPoints.value);
+        } else {
+            mapOptions('no meeting');
+        }
+    });
+
+    busStops.addEventListener('change', function(e) {
+        if(this.checked) {
+            mapOptions('bus stops');
+        } else {
+            mapOptions('no bus stops');
+        }
+    });
+
+    //parkingLots.addEventListener('change', function(e) {
+    //    if(this.checked) {
+    //        mapOptions(parkingLots.value);
+    //    } else {
+    //        mapOptions('no parking lots');
+    //    }
+    //})
+
+
+</script>
