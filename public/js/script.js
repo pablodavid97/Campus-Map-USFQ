@@ -63,10 +63,10 @@ var commercialFilter = [{
       ]
     }
   ];
-
+  
 function initMap() {}
 
-$(() => {
+$(document).ready(function() {
   initMap = function() {
 
     var lat = -0.197737,
@@ -1792,7 +1792,9 @@ $(() => {
   
   }
   
-})
+  google.maps.event.addDomListener(window, 'load', initMap);
+
+});
 
 // metodo usado para obtener coordenadas del poligono
 function logArray(array) {
