@@ -83,7 +83,40 @@ $(document).ready(function() {
     usfqMap = new google.maps.Map(document.getElementById('usfqMap'), options);
     infowindow = new google.maps.InfoWindow();
     BuildingLbl.prototype = new google.maps.OverlayView();
-  
+
+    var userInnerCircle = new google.maps.Circle({
+      radius: 5,
+      fillColor: '#2584ff',
+      fillOpacity: 0.8,
+      strokeColor: '#fff',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    var userOuterCircle = new google.maps.Circle({
+      radius: 15,
+      fillColor: '#2584ff',
+      fillOpacity: 0.2,
+      strokeColor: '#2584ff',
+      strokeOpacity: 1.0,
+      strokeWeight: 1
+    });
+
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((position) => {
+        var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        console.log("pos", pos);     
+        userInnerCircle.setCenter(pos);
+        userInnerCircle.setMap(usfqMap);
+        userOuterCircle.setCenter(pos);
+        userOuterCircle.setMap(usfqMap);
+      }, () => {
+        handleLocationError(true);
+      });
+    } else {
+      handleLocationError(false);
+    }
+
     BuildingLbl.prototype.onAdd = function() {
       var div = document.createElement('div');
       div.className = 'building-label';
@@ -1790,10 +1823,9 @@ $(document).ready(function() {
       });
     }
   
-  }
-  
   google.maps.event.addDomListener(window, 'load', initMap);
-
+  
+  }
 });
 
 // metodo usado para obtener coordenadas del poligono
@@ -1919,4 +1951,10 @@ function BuildingLbl(location, title, map) {
   this.div_ = null;
 
   this.setMap(map);
+}
+
+function handleLocationError(hasGeoLocation){
+  console.log(hasGeoLocation ?   
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
 }
