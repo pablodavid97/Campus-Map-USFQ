@@ -167,6 +167,9 @@ body a:link, a:visited {
     .navbar-nav ul#mapOptions {
         width: 100%;
     }
+    #mapNavbar .dropdown-menu input[type=checkbox] {
+        margin-right: -16px;
+    }
 }
 
 @media only screen and (max-width: 425px) {
