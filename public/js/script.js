@@ -1822,10 +1822,8 @@ $(document).ready(function() {
         map: usfqMap
       });
     }
-  
-  google.maps.event.addDomListener(window, 'load', initMap);
-  
   }
+  google.maps.event.addDomListener(window, 'load', initMap);
 });
 
 // metodo usado para obtener coordenadas del poligono
