@@ -10,6 +10,17 @@ var handicapServices = [];
 var studentServices = [];
 var emergencyExits = [];
 var parkingLots = [];
+var satelliteCheck = false;
+var campusCheck = true;
+var commercialPlacesCheck = false;
+var restaurantsCheck = true;
+var studentServicesCheck = true;
+var healthServicesCheck = true;
+var handicapServicesCheck = false;
+var emergencyExitsCheck = false;
+var entrancesCheck = true;
+var meetingPointsCheck = false;
+var busStopsCheck = true;
 var commercialFilter = [{
   "featureType": "administrative.land_parcel",
   "elementType": "labels",
@@ -1473,6 +1484,55 @@ $(document).ready(function() {
       hayek3,
       hospitalDeLosValles,
     ];
+
+    var buildingLbls = [
+      mainEntranceLbl,
+      miguelDeSantiagoLbl,
+      mozartLbl,
+      aristotelesLbl,
+      socratesLbl,
+      laotzeLbl,
+      hallPrincipalLbl,
+      eugenioEspejoLbl,
+      cuadrantesLbl,
+      plantaFisicaLbl,
+      veterinariaLbl,
+      tesoreriaLbl,
+      ciceronLbl,
+      epicuroLbl,
+      piramideLbl,
+      einstienLbl,
+      darwinLbl,
+      davinciLbl,
+      maxwellLbl,
+      bsLbl,
+      odontologiaLbl,
+      casaCoronaLbl,
+      casaBlancaLbl,
+      casaTomateLbl,
+      galileoLbl,
+      newtonLbl,
+      gastroChallengeLbl,
+      pagodaLbl,
+      coliseoLbl,
+      obeliscoLbl,
+      aulasComLbl,
+      canchasVolleyLbl,
+      canchasTennisLbl,
+      tallerMetalesLbl,
+      canchasFutbolSinthLbl,
+      canchasFutbolSinthLbl,
+      greenHouseLbl,	
+      canchasFutbolLbl,
+      invernaderoLbl,
+      entradaPuenteLbl,
+      puenteLbl,
+      comLbl,
+      hayekLbl,
+      hospitalDeLosVallesLbl,
+    ];    
+
+    buildingLbls.forEach(lbl => lbl.setMap(null));
   
       /* 
     ###############################
@@ -1513,6 +1573,8 @@ $(document).ready(function() {
         position: new google.maps.LatLng(-0.198277, -78.436516)
       }, {
         position: new google.maps.LatLng(-0.198511, -78.436193)
+      }, {
+        position: new google.maps.LatLng(-0.209706, -78.424789)
       }
     ];
     var busLen = busLocations.length;
@@ -1710,7 +1772,7 @@ $(document).ready(function() {
         position: restaurantInfo[i].position,
         icon: restaurantInfo[i].icon,
         title: restaurantInfo[i].title,
-        map: usfqMap
+        map: null
       });
     }
   
@@ -1787,7 +1849,7 @@ $(document).ready(function() {
         position: studentServicesInfo[i].position,
         icon: studentServicesInfo[i].icon,
         title: studentServicesInfo[i].title,
-        map: usfqMap
+        map: null
       })
     }
   
@@ -1819,9 +1881,130 @@ $(document).ready(function() {
         position: healthServicesInfo[i].position,
         icon: healthServicesInfo[i].icon,
         title: healthServicesInfo[i].title,
-        map: usfqMap
+        map: null
       });
     }
+
+    google.maps.event.addListener(usfqMap, 'zoom_changed', function() {
+      var zoomLevel = usfqMap.getZoom();
+      console.log("Zoom level", zoomLevel);
+
+      if(zoomLevel >= 20) {
+        console.log("buildings on");
+
+        // for(var i = 0; i < usfqEntrances.length; i++){
+        //   if(usfqEntrances[i].getMap() === null) {
+        //     usfqEntrances.forEach(entrance => entrance.setMap(usfqMap));
+        //   }
+        // }
+        for(var i = 0; i < buildingLbls.length; i++){
+          if(buildingLbls[i].getMap() === null) {
+            buildingLbls[i].setMap(usfqMap);
+          }
+        }
+
+        for(var i = 0; i < restaurants.length; i++){
+          if(restaurants[i].getMap() === null && restaurantsCheck){
+            restaurants.forEach(restaurant => restaurant.setMap(usfqMap));
+            console.log("restaurants checked", restaurantsCheck);
+          }
+        }
+
+        // for(var i = 0; i< busStops.length; i++){
+        //   if(busStops[i].getMap() === null){
+        //     busStops.forEach(stop => stop.setMap(usfqMap));
+        //   }
+        // }
+
+        for(var i = 0; i < puntosEncuentro.length; i++){
+          if(puntosEncuentro[i].getMap() === null && meetingPointsCheck){
+            puntosEncuentro.forEach(puntos => puntos.setMap(usfqMap));
+          }
+        }
+
+        for(var i = 0; i < healthServices.length; i++){
+          if(healthServices[i].getMap() === null && healthServicesCheck) {
+            healthServices.forEach(service => service.setMap(usfqMap));
+          }
+        }
+
+        for(var i = 0; i < handicapServices.length; i++){
+          if(handicapServices[i].getMap() === null && handicapServicesCheck) {
+            handicapServices.forEach(service => service.setMap(usfqMap));
+          }
+        }
+
+        for(var i = 0; i < studentServices.length; i++){
+          if(studentServices[i].getMap() === null && studentServicesCheck) {
+            studentServices.forEach(service => service.setMap(usfqMap));
+          }
+        }
+
+        for(var i = 0; i < emergencyExits.length; i++){
+          if(emergencyExits[i].getMap() === null && emergencyExitsCheck) {
+            emergencyExits.forEach(exit => exit.setMap(usfqMap));
+          }
+        }
+      } else {
+        console.log("buildings off");   
+        
+        // for(var i = 0; i < usfqEntrances.length; i++){
+        //   if(usfqEntrances[i].getMap() !== null) {
+        //     usfqEntrances.forEach(entrance => entrance.setMap(null));
+        //   }
+        // }
+
+        for(var i = 0; i < buildingLbls.length; i++){
+          if(buildingLbls[i].getMap() !== null) {
+            buildingLbls[i].setMap(null);
+          }
+        }
+
+        for(var i = 0; i < restaurants.length; i++){
+          if(restaurants[i].getMap() !== null && restaurantsCheck){
+            console.log("restaurants checked", restaurantsCheck);
+            
+            restaurants.forEach(restaurant => restaurant.setMap(null));
+          }
+        }
+
+        // for(var i = 0; i< busStops.length; i++){
+        //   if(busStops[i].getMap() !== null){
+        //     busStops.forEach(stop => stop.setMap(null));
+        //   }
+        // }
+
+        for(var i = 0; i < puntosEncuentro.length; i++){
+          if(puntosEncuentro[i].getMap() !== null && meetingPointsCheck){
+            puntosEncuentro.forEach(puntos => puntos.setMap(null));
+          }
+        }
+
+        for(var i = 0; i < healthServices.length; i++){
+          if(healthServices[i].getMap() !== null && healthServicesCheck) {
+            healthServices.forEach(service => service.setMap(null));
+          }
+        }
+
+        for(var i = 0; i < handicapServices.length; i++){
+          if(handicapServices[i].getMap() !== null && handicapServicesCheck) {
+            handicapServices.forEach(service => service.setMap(null));
+          }
+        }
+
+        for(var i = 0; i < studentServices.length; i++){
+          if(studentServices[i].getMap() !== null && studentServicesCheck) {
+            studentServices.forEach(service => service.setMap(null));
+          }
+        }
+
+        for(var i = 0; i < emergencyExits.length; i++){
+          if(emergencyExits[i].getMap() !== null && emergencyExitsCheck) {
+            emergencyExits.forEach(exit => exit.setMap(null));
+          }
+        }
+      }
+    });
   }
   google.maps.event.addDomListener(window, 'load', initMap);
 });
@@ -1857,87 +2040,112 @@ function showBuildingInfo(buildingName, buildingServices, position){
 
 // funcion para filtrar mapa 
 function mapOptions(option){
-  if(option === 'satellite' || option === 'roadmap')
+  if(option === 'satellite') {
+    satelliteCheck = true;
     usfqMap.setMapTypeId(option);
+  } if(option === 'roadmap') {
+    satelliteCheck = false;
+    usfqMap.setMapTypeId(option);
+  }
 
   if(option === 'map') {
     usfqCampus.forEach(building => building.setMap(usfqMap));
+    campusCheck = true;
   }
 
   if(option === 'null') {
     usfqCampus.forEach(building => building.setMap(null));
+    campusCheck = false;
   }
 
   if(option === 'commercial') {
     usfqMap.setOptions({styles: []});
+    commercialPlacesCheck = true;
   }
 
   if(option === 'no commercial') {
     usfqMap.setOptions({styles: commercialFilter});
+    commercialPlacesCheck = false;
   }
 
   if(option === 'emergency') {
     emergencyExits.forEach(exit => exit.setMap(usfqMap));
+    emergencyExitsCheck = true;
   }
 
   if(option === 'no emergency exits') {
     emergencyExits.forEach(exit => exit.setMap(null));
+    emergencyExitsCheck = false; 
   }
 
   if(option === 'handicap') {
     handicapServices.forEach(service => service.setMap(usfqMap));
+    handicapServicesCheck = true;
   }
 
   if(option === 'no handicap') {
     handicapServices.forEach(service => service.setMap(null));
+    handicapServicesCheck = false; 
   }
 
   if(option === 'entrances') {
     usfqEntrances.forEach(entrance => entrance.setMap(usfqMap));
+    entrancesCheck = true;
   }
 
   if(option === 'no entrances') {
     usfqEntrances.forEach(entrance => entrance.setMap(null));
+    entrancesCheck = false; 
   }
 
   if(option === 'meeting points'){
     puntosEncuentro.forEach(punto => punto.setMap(usfqMap));
+    meetingPointsCheck = true;
   }
 
   if(option === 'no meeting'){
     puntosEncuentro.forEach(punto => punto.setMap(null));
+    meetingPointsCheck = false; 
   }
 
   if(option === 'bus stops') {
     busStops.forEach(busStop => busStop.setMap(usfqMap));
+    busStopsCheck = true;
   }
 
   if(option === 'no bus stops'){
     busStops.forEach(busStop => busStop.setMap(null));
+    busStopsCheck = false; 
   }
 
   if(option === 'restaurants') {
     restaurants.forEach(restaurant => restaurant.setMap(usfqMap));
+    restaurantsCheck = true;
   }
 
   if(option === 'no restaurants') {
     restaurants.forEach(restaurant => restaurant.setMap(null));
+    restaurantsCheck = false; 
   }
 
   if(option === 'student services') {
     studentServices.forEach(service => service.setMap(usfqMap));
+    studentServicesCheck = true;
   }
 
   if(option === 'no student services') {
     studentServices.forEach(service => service.setMap(null));
+    studentServicesCheck = false; 
   }
 
   if(option === 'health services') {
     healthServices.forEach(service => service.setMap(usfqMap));
+    healthServicesCheck = true;
   }
 
   if(option === 'no health services') {
     healthServices.forEach(service => service.setMap(null));
+    healthServicesCheck = false; 
   }
 }
 
