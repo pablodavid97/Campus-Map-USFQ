@@ -438,8 +438,8 @@ $(document).ready(function() {
     var cuadrantes = new google.maps.Polygon({
       map: usfqMap,
       paths: cuadrantesCoor,
-      strokeColor: 'green',
-      fillColor: 'green',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1077,8 +1077,8 @@ $(document).ready(function() {
     var canchasVolley = new google.maps.Polygon({
       map: usfqMap,
       paths: canchasVolleyCoor,
-      strokeColor: 'green',
-      fillColor: 'green',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1101,8 +1101,8 @@ $(document).ready(function() {
     var canchasTennis = new google.maps.Polygon({
       map: usfqMap,
       paths: canchasTennisCoor,
-      strokeColor: 'green',
-      fillColor: 'green',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1159,8 +1159,8 @@ $(document).ready(function() {
     var canchasFutbolSinth = new google.maps.Polygon({
       map: usfqMap,
       paths: canchaFutbolSinthCoor ,
-      strokeColor: 'green',
-      fillColor: 'green',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1213,8 +1213,8 @@ $(document).ready(function() {
     var canchasFutbol = new google.maps.Polygon({
       map: usfqMap,
       paths: canchasFutbolCoor  ,
-      strokeColor: 'green',
-      fillColor: 'green',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1395,8 +1395,8 @@ $(document).ready(function() {
     var hayek3 = new google.maps.Polygon({
       map: usfqMap,
       paths: hayek3Coor  ,
-      strokeColor: 'blue',
-      fillColor: 'blue',
+      strokeColor: '#87d17b',
+      fillColor: '#87d17b',
       fillOpacity: 0.6
     });
   
@@ -1484,6 +1484,9 @@ $(document).ready(function() {
       hayek3,
       hospitalDeLosValles,
     ];
+
+    console.log("Building Num", usfqCampus.length);
+    
 
     var buildingLbls = [
       mainEntranceLbl,
