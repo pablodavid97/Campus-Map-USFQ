@@ -2046,7 +2046,7 @@ function mapOptions(option){
   if(option === 'satellite') {
     satelliteCheck = true;
     usfqMap.setMapTypeId(option);
-  } if(option === 'roadmap') {
+  } else if(option === 'roadmap') {
     satelliteCheck = false;
     usfqMap.setMapTypeId(option);
   }
