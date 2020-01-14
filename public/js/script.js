@@ -1395,8 +1395,8 @@ $(document).ready(function() {
     var hayek3 = new google.maps.Polygon({
       map: usfqMap,
       paths: hayek3Coor  ,
-      strokeColor: '#87d17b',
-      fillColor: '#87d17b',
+      strokeColor: 'blue',
+      fillColor: 'blue',
       fillOpacity: 0.6
     });
   
